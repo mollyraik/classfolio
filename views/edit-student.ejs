@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head') %>
+<body>
+    <h1>Edit <%= student.firstName + " " + student.lastName %></h1>
+    <form action="/student/<%= student._id %>?_method=PUT" method="POST">
+        <label>
+            First Name: <input type="text" name="firstName" value="<%= student.firstName %>">
+        </label>
+        <label>
+            Last Name: <input type="text" name="lastName" value="<%= student.lastName %>">
+        </label>
+        <label>
+            Photo: <input type="text" name="photo" value="<%= student.photo %>">
+        </label>
+        <label>
+            Class: <input type="text" name="classroom" value="<%= student.classroom %>">
+        </label>
+        <label>
+            Birthdate: <input type="date" name="dob" value="<%= student.dob.toISOString().slice(0, 10) %>">
+        </label>
+        <input type="submit" value="Update Student">
+
+    </form>
+</body>
+</html>

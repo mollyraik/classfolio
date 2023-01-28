@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head') %>
+<body>
+    <nav>
+        <a href="/class">Back to the Class Index</a>
+        <a href="/projects/new?studentId=<%= student._id %>">Add a New Project</a>
+    </nav>
+    <h1><%= title %></h1>
+    <img src="<%= student.photo %>" alt="<%= title %>">
+    <a href="/student/<%= student._id %>/edit">Edit <%= title %></a>
+    <form action="/student/<%= student._id %>?_method=DELETE" method="POST">
+        <input type="submit" value="Delete">
+    </form>
+    <ul>
+        <% projects.forEach((project) => {%>
+            <a href="projects/<%= project._id %>">
+                <p><%= project.name %></p>
+                <img src="<%= project.photo %>" alt="<%= project.name %>">
+            </a>
+        <% }) %> 
+    </ul>
+</body>
+</html>

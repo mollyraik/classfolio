@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head') %>
+<body>
+    <h1>Add a new Project</h1>
+    <form action="/student/<%= student._id %>" method="POST">
+        <label>
+            Project Name: <input type="text" name="name">
+        </label>
+        <label>
+            Description: <input type="text" name="description">
+        </label>
+        <label>
+            Photo: <input type="text" name="photo">
+        </label>
+        <label>
+            Date Made: <input type="date" name="dateMade">
+        </label>
+        <label> Created By: 
+            <input type="text" name="createdBy" value="<%= student.firstName + " " + student.lastName%>" readonly>
+        </label>
+        <input type="submit" name="" value="Add Project">
+    </form>
+
+    
+</body>
+</html>

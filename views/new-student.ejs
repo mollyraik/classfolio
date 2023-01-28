@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head') %>
+<body>
+    <h1>Add a new Student</h1>
+    <form action="/class" method="POST" autocomplete="off">
+        <label>
+            First Name: <input type="text" name="firstName">
+        </label>
+        <label>
+            Last Name: <input type="text" name="lastName">
+        </label>
+        <label>
+            Class: <input type="text" name="classroom">
+        </label>
+        <label>
+            Date of Birth: <input type="date" name="dob">
+        </label>
+        <label>
+            Photo: <input type="text" name="photo">
+        </label>
+        <input type="submit" name="" value="Add Student">
+    </form>
+
+    
+</body>
+</html>
