@@ -30,7 +30,7 @@ app.use(express.static('public'));
 // mount routes
 app.get('/', (req,res) => res.render('home.ejs', {title: 'ClassMinder Home'}));
 app.use(studentsRouter);
-// app.use(projectsRouter);
+app.use(projectsRouter);
 
 // app listener
 app.listen(PORT, () => console.log(`Express is listening on port: ${PORT}`));
