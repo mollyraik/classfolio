@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head') %>
+<body>
+    <h1>Edit <%= project.name %></h1>
+    <form action="/projects/<%= project._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+        <label>
+            Project Name: <input type="text" name="name" value="<%= project.name %>">
+        </label>
+        <label>
+            Description: <input type="text" name="description" value="<%= project.description %>">
+        </label>
+        <label>
+            Photo: <input type="file" name="photo" value="<%= project.photo %>">
+        </label>
+        <label>
+            Created By: <input type="text" name="createdBy" value="<%= student %>">
+        </label>
+        <label>
+            Date Made: <input type="date" name="dateMade" value="<%= project.dateMade.toISOString().slice(0, 10) %>">
+        </label>
+        <input type="submit" value="Update Project">
+
+    </form>
+</body>
+</html>
