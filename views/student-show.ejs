@@ -14,7 +14,7 @@
     </form>
     <ul>
         <% projects.forEach((project) => {%>
-            <a href="projects/<%= project._id %>">
+            <a href="/projects/<%= project._id %>">
                 <p><%= project.name %></p>
                 <img src="<%= project.photo %>" alt="<%= project.name %>">
             </a>
