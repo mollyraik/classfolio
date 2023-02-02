@@ -2,19 +2,19 @@
 <html lang="en">
 <%- include('./partials/head') %>
 <body>
-    <nav>
-        <a href="/student/new">Add a New Student</a>
-    </nav>
-    <h1>Class Page</h1>
-    <ul>
-        <% students.forEach((student) => { %>
-         <li>
-            <a href="/student/<%= student._id %>">
-                <img src="<%= student.photo %>" alt=" <%= `${student.firstName} ${student.lastName}` %> ">
-                <p> <%= `${student.firstName} ${student.lastName}` %> </p>
-            </a>
-        </li>   
-        <% }) %>
-    </ul>
+    <div class="container">
+        <nav>
+            <a href="/student/new">Add a New Student</a>
+        </nav>
+        <h1 class="primary">Our Class</h1>
+        <div class="row">
+            <% students.forEach((student) => { %>
+                <a href="/student/<%= student._id %>" class="col-xs-12 col-sm-6 col-lg-3">
+                    <img src="<%= student.photo %>" alt=" <%= `${student.firstName} ${student.lastName}` %> " class="img-responsive">
+                    <p> <%= `${student.firstName} ${student.lastName}` %> </p>
+                </a> 
+            <% }) %>
+        </div>
+    </div>
 </body>
 </html>
