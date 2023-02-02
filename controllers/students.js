@@ -3,6 +3,7 @@ const router = express.Router();
 const data = require('../data');
 const Student = require('../models/student.js');
 const Project = require('../models/project.js');
+const cloudinary = require('cloudinary').v2;
 
 // mount routes
 
@@ -41,20 +42,32 @@ router.delete('/student/:id', (req,res) => {
 
 // update
 router.put('/student/:id', (req,res) => {
-    Student.findByIdAndUpdate(
-        req.params.id,
-        req.body,
-        {new: true},
-        (err, updatedStudent) => {
-            res.redirect(`/student/${updatedStudent._id}`)
-        }
-    )
+    const photo = req.files.photo;
+    photo.mv(`./uploads/${photo.name}`);
+    cloudinary.uploader.upload(`./uploads/${photo.name}`, (err, result) => {
+        console.log(err);
+        req.body.photo = result.secure_url;
+        Student.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            {new: true},
+            (err, updatedStudent) => {
+                res.redirect(`/student/${updatedStudent._id}`)
+            }
+        )
+    })
 })
 
 // create
 router.post('/class', (req,res) => {
-    Student.create(req.body, (err, createdStudent) => {
-        res.redirect('/class')
+    const photo = req.files.photo;
+    photo.mv(`./uploads/${photo.name}`);
+    cloudinary.uploader.upload(`./uploads/${photo.name}`, (err, result) => {
+        console.log(err);
+        req.body.photo = result.secure_url;
+        Student.create(req.body, (err, createdStudent) => {
+            res.redirect('/class')
+        })
     })
 })
 
