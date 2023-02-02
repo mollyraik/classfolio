@@ -3,7 +3,7 @@
 <%- include('./partials/head') %>
 <body>
     <h1>Add a new Student</h1>
-    <form action="/class" method="POST" autocomplete="off">
+    <form action="/class" method="POST" autocomplete="off" enctype="multipart/form-data">
         <label>
             First Name: <input type="text" name="firstName">
         </label>
@@ -17,7 +17,7 @@
             Date of Birth: <input type="date" name="dob">
         </label>
         <label>
-            Photo: <input type="text" name="photo">
+            Photo: <input type="file" name="photo">
         </label>
         <input type="submit" name="" value="Add Student">
     </form>
