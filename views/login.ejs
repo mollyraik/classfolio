@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Please Log in</title>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+    <h1>Log in to Classfolio</h1>
+    <form action="/login" method="POST">
+        <label>
+            Email:
+            <input type="email" name="email" required>
+        </label>
+        <label>
+            Password:
+            <input type="password" name="password" required>
+        </label>
+        <input type="submit" value="Log in">
+    </form>
+</body>
+</html>
