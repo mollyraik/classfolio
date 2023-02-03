@@ -3,10 +3,7 @@
 <%- include('./partials/head') %>
 <body>
     <div class="container">
-        <nav>
-            <a href="/class">Back to the Class Index</a>
-            <a href="/projects/new?studentId=<%= student._id %>">Add a New Project</a>
-        </nav>
+        <%- include('./partials/nav') %>
         <div class="row">
             <h1 class="col-xs-12 col-md-4"><%= title %></h1>
             <img src="<%= student.photo %>" alt="<%= title %>" class="col-xs-12 col-md-8 col-lg-4">
@@ -15,13 +12,17 @@
             <a href="/student/<%= student._id %>/edit" class="btn">Edit <%= title %></a>
         </button>
         <form action="/student/<%= student._id %>?_method=DELETE" method="POST">
-            <input type="submit" value="Delete" class="btn-danger">
+            <input type="submit" value="Delete <%= title %>" class="btn-danger">
         </form>
+        <button class="btn-default">
+            <a href="/projects/new?studentId=<%= student._id %>">Add a New Project</a>
+        </button>
+        <h3><%= student.firstName %>'s Projects</h3>
         <div class="row">
             <% projects.forEach((project) => {%>
                 <a href="/projects/<%= project._id %>" class="col-xs-12 col-sm-6 col-lg-3">
                     <p><%= project.name %></p>
-                    <img src="<%= project.photo %>" alt="<%= project.name %>">
+                    <img src="<%= project.photo %>" alt="<%= project.description %>">
                 </a>
             <% }) %> 
         </div>

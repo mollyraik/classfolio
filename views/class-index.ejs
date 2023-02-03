@@ -3,9 +3,7 @@
 <%- include('./partials/head') %>
 <body>
     <div class="container">
-        <nav>
-            <a href="/student/new">Add a New Student</a>
-        </nav>
+        <%- include('./partials/nav') %>
         <h1 class="primary">Our Class</h1>
         <div class="row">
             <% students.forEach((student) => { %>

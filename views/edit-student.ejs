@@ -2,6 +2,7 @@
 <html lang="en">
 <%- include('./partials/head') %>
 <body>
+    <%- include('./partials/nav') %>
     <h1>Edit <%= student.firstName + " " + student.lastName %></h1>
     <form action="/student/<%= student._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
         <label>
