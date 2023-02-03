@@ -2,8 +2,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
+const session = require('express-session');
 const studentsRouter = require('./controllers/students');
 const projectsRouter = require('./controllers/projects');
+const usersRouter = require('./controllers/users');
 const fileUpload = require('express-fileupload');
 const cloudinary = require('cloudinary').v2;
 
@@ -34,12 +36,38 @@ db.on('connected', () => console.log('mongo connected'));
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 app.use(express.static('public'));
+
+app.use(session({
+  // secret should be in .env file and should be very random
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: false,
+}));
+
 app.use(fileUpload({ createParentPath: true }));
 
+app.use((req,res,next) => {
+  if (req.session.userId) {
+      res.locals.user = req.session.userId;
+  } else {
+      res.locals.user = null;
+  }
+  next();
+});
+
+// authentication middleware
+function isAuthenticated(req, res, next) {
+  if (!req.session.userId) {
+      return res.redirect('/');
+  }
+  next();
+}
+
 // mount routes
-app.get('/', (req,res) => res.render('home.ejs', {title: 'ClassMinder Home'}));
-app.use(studentsRouter);
-app.use(projectsRouter);
+app.get('/', (req,res) => res.render('home.ejs', {title: 'Classfolio Home'}));
+app.use(usersRouter);
+app.use(isAuthenticated, studentsRouter);
+app.use(isAuthenticated, projectsRouter);
 
 // app listener
 app.listen(PORT, () => console.log(`Express is listening on port: ${PORT}`));
