@@ -7,6 +7,9 @@ img {
     max-height: fit-content;
 }
 
+nav {
+    margin-bottom: 20px;
+}
 /* #student-show-photo {
     border-style: solid;
     border-color: #03c2fc;
@@ -21,7 +24,7 @@ img {
     align-items: center;
 } */
 
-.card {
+/* .card {
     margin: 10px;
     
-}
+} */
