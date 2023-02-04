@@ -2,31 +2,48 @@
 <html lang="en">
 <%- include('./partials/head') %>
 <body>
+    <%- include('./partials/nav') %>
     <div class="container">
-        <%- include('./partials/nav') %>
-        <div class="row">
-            <h1 class="col-xs-12 col-md-4"><%= title %></h1>
-            <img src="<%= student.photo %>" alt="<%= title %>" class="col-xs-12 col-md-8 col-lg-4">
+        <div class="card mb-3" style="max-width: 700px;">
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <img src="<%= student.photo %>" alt="<%= title %>" class="card-img" id="student-show-photo">
+                </div>
+                <div class="col-xs-12 col-sm-6" id="student-show-name-btns">
+                    <div class="card-body">
+                        <h1 class="card-title"><%= title %></h1>
+                        <p class="card-text">Class: <%= student.classroom %></p>
+                        <p class="card-text">Birthday: <%= student.dob.toDateString() %></p>
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-secondary">
+                            <a href="/student/<%= student._id %>/edit" class="btn btn-secondary">Edit <%= title %></a>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-danger">
+                            <form action="/student/<%= student._id %>?_method=DELETE" method="POST">
+                                <input type="submit" value="Delete <%= title %>" class="btn btn-danger">
+                            </form>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <button class="btn-default">
-            <a href="/student/<%= student._id %>/edit" class="btn">Edit <%= title %></a>
-        </button>
-        <form action="/student/<%= student._id %>?_method=DELETE" method="POST">
-            <input type="submit" value="Delete <%= title %>" class="btn-danger">
-        </form>
-        <button class="btn-default">
-            <a href="/projects/new?studentId=<%= student._id %>">Add a New Project</a>
-        </button>
-        <h3><%= student.firstName %>'s Projects</h3>
-        <div class="row">
+        <h1 class="card-title"><%= student.firstName %>'s Projects <span class="badge badge-primary">
+                        <a href="/projects/new?studentId=<%= student._id %>" class="badge badge-primary">Add a New Project</a>
+                </span></h1>
+        <div class="row" data-masonry='{"percentPosition": true }'>
             <% projects.forEach((project) => {%>
-                <a href="/projects/<%= project._id %>" class="col-xs-12 col-sm-6 col-lg-3">
-                    <p><%= project.name %></p>
-                    <img src="<%= project.photo %>" alt="<%= project.description %>">
-                </a>
+                <div class="card col-xs-12 col-sm-6 col-lg-3">
+                    <a href="/projects/<%= project._id %>" class="card-body">
+                        <img src="<%= project.photo %>" alt="<%= project.description %>" class="img-responsive w-100 shadow-1-strong rounded mb-4">
+                        <h5 class="card-title text-center"><%= project.name %></h5>
+                    </a>
+                </div>
             <% }) %> 
         </div>
-
     </div>
+    <%- include('./partials/bootstrapjs.ejs') %>
 </body>
 </html>
