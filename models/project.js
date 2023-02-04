@@ -13,7 +13,6 @@ const projectSchema = new Schema({
     },
     dateMade: {
         type: Date,
-        // default: new Date().now(),
     },
     createdBy: {
         type: Schema.Types.ObjectId,
