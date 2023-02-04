@@ -5,9 +5,9 @@
     <%- include('./partials/nav') %>
     <div class="container">
         <h1 class="primary">Our Class</h1>
-        <div class="row" data-masonry='{"percentPosition": true }'>
+        <div class="row g-3" data-masonry='{"percentPosition": true }'>
             <% students.forEach((student) => { %>
-                <div class="col-xs-12 col-sm-6 col-lg-3">
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                     <div class="card text-center">
                         <a href="/student/<%= student._id %>" class="card-body">
                             <img src="<%= student.photo %>" alt=" <%= `${student.firstName} ${student.lastName}` %> " class="img-responsive w-100 shadow-1-strong rounded mb-4">

@@ -3,17 +3,28 @@
 <%- include('./partials/head') %>
 <body>
     <%- include('./partials/nav') %>
-    <nav>
-        <a href="/student/<%= project.createdBy %>">Back to <%= student %> Page</a>
-    </nav>
-    <h1><%= title %> by <%= student %></h1>
-    <img src="<%= project.photo %>" alt="<%= project.description %>">
-    <p>Description: <%= project.description %></p>
-    <p>Made on: <%= project.dateMade.toDateString() %></p>
-    <a href="/projects/<%= project._id %>/edit" >Edit <%= title %></a>
-    <form action="/projects/<%= project._id %>?_method=DELETE" method="POST">
-        <input type="submit" value="Delete this Project">
-    </form>
+    <div class="container">
+        <div class="card" style="max-width: 800px; margin: auto;">
+            <div class="card-body">
+                <h1 class="card-title"><%= title %> by <a href="/student/<%= project.createdBy %>"><%= student %></a></h1>
+            </div>
+                <img src="<%= project.photo %>" alt="<%= project.description %>" class="card-img">
+            <div class="card-body">
+                <p class="card-text">Description: <%= project.description %></p>
+                <p class="card-text">Made on: <%= project.dateMade.toDateString() %></p>
+                <div class="row">
+                    <button class="btn btn-secondary col-xs-12 col-md-6">
+                        <a href="/projects/<%= project._id %>/edit" class="btn btn-secondary">Edit <%= title %></a>
+                    </button>
+                    <button class="btn btn-danger col-xs-12 col-md-6">
+                        <form action="/projects/<%= project._id %>?_method=DELETE" method="POST">
+                            <input type="submit" value="Delete this Project" class="btn btn-danger">
+                        </form>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
     <%- include('./partials/bootstrapjs.ejs') %>
 </body>
 </html>

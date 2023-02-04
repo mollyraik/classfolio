@@ -9,7 +9,7 @@
                 <div class="col-xs-12 col-md-6">
                     <img src="<%= student.photo %>" alt="<%= title %>" class="card-img" id="student-show-photo">
                 </div>
-                <div class="col-xs-12 col-sm-6" id="student-show-name-btns">
+                <div class="col-xs-12 col-md-6" id="student-show-name-btns">
                     <div class="card-body">
                         <h1 class="card-title"><%= title %></h1>
                         <p class="card-text">Class: <%= student.classroom %></p>
@@ -30,16 +30,18 @@
                 </div>
             </div>
         </div>
-        <h1 class="card-title"><%= student.firstName %>'s Projects <span class="badge badge-primary">
-                        <a href="/projects/new?studentId=<%= student._id %>" class="badge badge-primary">Add a New Project</a>
+        <h1 class="card-title"><%= student.firstName %>'s Projects <span class="badge bg-primary">
+                        <a href="/projects/new?studentId=<%= student._id %>" class="btn btn-primary">Add a New Project</a>
                 </span></h1>
         <div class="row" data-masonry='{"percentPosition": true }'>
             <% projects.forEach((project) => {%>
-                <div class="card col-xs-12 col-sm-6 col-lg-3">
-                    <a href="/projects/<%= project._id %>" class="card-body">
-                        <img src="<%= project.photo %>" alt="<%= project.description %>" class="img-responsive w-100 shadow-1-strong rounded mb-4">
-                        <h5 class="card-title text-center"><%= project.name %></h5>
-                    </a>
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <div class="card">
+                        <a href="/projects/<%= project._id %>" class="card-body">
+                            <img src="<%= project.photo %>" alt="<%= project.description %>" class="img-responsive w-100 shadow-1-strong rounded mb-4">
+                            <h5 class="card-title text-center"><%= project.name %></h5>
+                        </a>
+                    </div>
                 </div>
             <% }) %> 
         </div>
