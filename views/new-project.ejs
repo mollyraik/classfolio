@@ -6,16 +6,16 @@
     <h1>Add a new Project</h1>
     <form action="/student/<%= student._id %>" method="POST" enctype="multipart/form-data">
         <label>
-            Project Name: <input type="text" name="name">
+            Project Name: <input type="text" name="name" required>
         </label>
         <label>
-            Description: <input type="text" name="description">
+            Description: <input type="text" name="description" required>
         </label>
         <label>
-            Photo: <input type="file" name="photo">
+            Photo: <input type="file" name="photo" required>
         </label>
         <label>
-            Date Made: <input type="date" name="dateMade">
+            Date Made: <input type="date" name="dateMade" required>
         </label>
         <label> Created By: 
             <input type="text" name="createdBy" value="<%= student.firstName + " " + student.lastName%>" readonly>
@@ -23,6 +23,6 @@
         <input type="submit" name="" value="Add Project">
     </form>
 
-    
+    <%- include('./partials/bootstrapjs.ejs') %>
 </body>
 </html>

@@ -2,16 +2,20 @@
 <html lang="en">
 <%- include('./partials/head') %>
 <body>
-    <h1>Welcome to ClassMinder</h1>
-    <!-- <form action="/class">
-        <input type="submit" value="Take me to the Class Page">
-    </form> -->
-
-    <form action="/login">
-        <input type="submit" value="Login to Classfolio">
-    </form>
-    <form action="/signup">
-        <input type="submit" value="Sign up for Classfolio">
-    </form>
+    <%- include('./partials/bootstrapjs.ejs') %>
+    <div class="container">
+        <h1>Welcome to Classfolio</h1>
+        <!-- <form action="/class">
+            <input type="submit" value="Take me to the Class Page">
+        </form> -->
+    
+        <form action="/login">
+            <input type="submit" value="Login to Classfolio">
+        </form>
+        <form action="/signup">
+            <input type="submit" value="Sign up for Classfolio">
+        </form>
+    </div>
+    <%- include('./partials/bootstrapjs.ejs') %>
 </body>
 </html>

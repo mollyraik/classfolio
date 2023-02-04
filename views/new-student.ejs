@@ -6,16 +6,16 @@
     <h1>Add a new Student</h1>
     <form action="/class" method="POST" autocomplete="off" enctype="multipart/form-data">
         <label>
-            First Name: <input type="text" name="firstName">
+            First Name: <input type="text" name="firstName" required>
         </label>
         <label>
-            Last Name: <input type="text" name="lastName">
+            Last Name: <input type="text" name="lastName" required>
         </label>
         <label>
             Class: <input type="text" name="classroom">
         </label>
         <label>
-            Date of Birth: <input type="date" name="dob">
+            Date of Birth: <input type="date" name="dob" required>
         </label>
         <label>
             Photo: <input type="file" name="photo">
@@ -23,6 +23,6 @@
         <input type="submit" name="" value="Add Student">
     </form>
 
-    
+    <%- include('./partials/bootstrapjs.ejs') %>
 </body>
 </html>
