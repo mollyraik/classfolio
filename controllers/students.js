@@ -44,6 +44,9 @@ router.delete('/student/:id', (req,res) => {
 router.put('/student/:id', (req,res) => {
     const photo = req.files.photo;
     photo.mv(`./uploads/${photo.name}`);
+    const fs = require('fs');
+    const path = require('path');
+    const projectRoot = path.resolve();
     cloudinary.uploader.upload(`./uploads/${photo.name}`, (err, result) => {
         console.log(err);
         req.body.photo = result.secure_url;
@@ -52,7 +55,9 @@ router.put('/student/:id', (req,res) => {
             req.body,
             {new: true},
             (err, updatedStudent) => {
-                res.redirect(`/student/${updatedStudent._id}`)
+                fs.unlink(`${projectRoot}/uploads/${photo.name}`, (err) => {
+                    res.redirect(`/student/${updatedStudent._id}`)
+                })
             }
         )
     })
@@ -62,11 +67,17 @@ router.put('/student/:id', (req,res) => {
 router.post('/class', (req,res) => {
     const photo = req.files.photo;
     photo.mv(`./uploads/${photo.name}`);
+    const fs = require('fs');
+    const path = require('path');
+    const projectRoot = path.resolve();
     cloudinary.uploader.upload(`./uploads/${photo.name}`, (err, result) => {
         console.log(err);
         req.body.photo = result.secure_url;
         Student.create(req.body, (err, createdStudent) => {
-            res.redirect('/class')
+            fs.unlink(`${projectRoot}/uploads/${photo.name}`, (err) => {
+                console.log(err);
+                res.redirect('/class');
+            })
         })
     })
 })

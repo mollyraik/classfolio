@@ -37,7 +37,7 @@ router.put('/projects/:id', (req,res) => {
     photo.mv(`./uploads/${photo.name}`);
     const fs = require('fs');
     const path = require('path');
-    const projectRoot = path.resolve('class-minder', '..');
+    const projectRoot = path.resolve();
     cloudinary.uploader.upload(`./uploads/${photo.name}`, (err, result) => {
         console.log(err);
         console.log(result);
@@ -54,6 +54,7 @@ router.put('/projects/:id', (req,res) => {
                 {new: true},
                 (err, updatedProject) => {
                     fs.unlink(`${projectRoot}/uploads/${photo.name}`, (err) => {
+                        console.log(err);
                         res.redirect(`/projects/${updatedProject._id}`)
                     })
                 }
@@ -69,7 +70,7 @@ router.post('/student/:id', (req,res) => {
     photo.mv(`./uploads/${photo.name}`);
     const fs = require('fs');
     const path = require('path');
-    const projectRoot = path.resolve('class-minder', '..');
+    const projectRoot = path.resolve();
     cloudinary.uploader.upload(`./uploads/${photo.name}`, (err, result) => {
         console.log(err);
         req.body.photo = result.secure_url;
@@ -77,6 +78,7 @@ router.post('/student/:id', (req,res) => {
             req.body.createdBy = foundStudent._id;
             Project.create(req.body, (err, createdProject) => {
                 fs.unlink(`${projectRoot}/uploads/${photo.name}`, (err) => {
+                    console.log(err);
                     res.redirect(`/student/${foundStudent._id}`);
                 })
             })
