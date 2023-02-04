@@ -2,8 +2,8 @@
 <html lang="en">
 <%- include('./partials/head') %>
 <body>
+    <%- include('./partials/nav') %>
     <div class="container">
-        <%- include('./partials/nav') %>
         <h1 class="primary">Our Class</h1>
         <div class="row" data-masonry='{"percentPosition": true }'>
             <% students.forEach((student) => { %>
@@ -18,5 +18,6 @@
             <% }) %>
         </div>
     </div>
+    <%- include('./partials/bootstrapjs.ejs') %>
 </body>
 </html>
