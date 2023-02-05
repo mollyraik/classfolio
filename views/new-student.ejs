@@ -3,26 +3,32 @@
 <%- include('./partials/head') %>
 <body>
     <%- include('./partials/nav') %>
-    <h1>Add a new Student</h1>
-    <form action="/class" method="POST" autocomplete="off" enctype="multipart/form-data">
-        <label>
-            First Name: <input type="text" name="firstName" required>
-        </label>
-        <label>
-            Last Name: <input type="text" name="lastName" required>
-        </label>
-        <label>
-            Class: <input type="text" name="classroom">
-        </label>
-        <label>
-            Date of Birth: <input type="date" name="dob" required>
-        </label>
-        <label>
-            Photo: <input type="file" name="photo">
-        </label>
-        <input type="submit" name="" value="Add Student">
-    </form>
-
+    <div class="container">
+        <h1>Add a New Student</h1>
+        <form action="/class" method="POST" autocomplete="off" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label" for="firstName">First Name:</label>
+                <input type="text" name="firstName" class="form-control" id="firstName" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="lastName">Last Name:</label>
+                <input type="text" name="lastName" class="form-control" id="lastName" required>  
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="classroom">Classroom:</label>
+                <input type="text" name="classroom" class="form-control" id="classroom" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="dateOfBirth">Date of Birth:</label>
+                <input type="date" name="dob" required class="form-control" id="dateOfBirth">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="studentPhoto">Photo:</label>
+                <input type="file" name="photo" class="form-control" id="studentPhoto">
+            </div>
+            <button type="submit" class="btn btn-primary">Add Student</button>
+        </form>
+    </div>
     <%- include('./partials/bootstrapjs.ejs') %>
 </body>
 </html>
