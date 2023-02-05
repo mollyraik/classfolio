@@ -15,7 +15,7 @@
             Photo: <input type="file" name="photo" required>
         </label>
         <label>
-            Date Made: <input type="date" name="dateMade" required>
+            Date Made: <input type="date" name="dateMade" value="<%= new Date().toISOString().slice(0, 10) %>">
         </label>
         <label> Created By: 
             <input type="text" name="createdBy" value="<%= student.firstName + " " + student.lastName%>" readonly>
