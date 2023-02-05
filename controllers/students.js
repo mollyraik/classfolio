@@ -48,18 +48,21 @@ router.put('/student/:id', (req,res) => {
     const path = require('path');
     const projectRoot = path.resolve();
     cloudinary.uploader.upload(`./uploads/${photo.name}`, (err, result) => {
-        console.log(err);
-        req.body.photo = result.secure_url;
-        Student.findByIdAndUpdate(
-            req.params.id,
-            req.body,
-            {new: true},
-            (err, updatedStudent) => {
-                fs.unlink(`${projectRoot}/uploads/${photo.name}`, (err) => {
-                    res.redirect(`/student/${updatedStudent._id}`)
-                })
-            }
-        )
+        if (err) {
+            res.redirect(`/student/${req.params.id}/edit`);
+        } else {
+            req.body.photo = result.secure_url;
+            Student.findByIdAndUpdate(
+                req.params.id,
+                req.body,
+                {new: true},
+                (err, updatedStudent) => {
+                    fs.unlink(`${projectRoot}/uploads/${photo.name}`, (err) => {
+                        res.redirect(`/student/${updatedStudent._id}`)
+                    })
+                }
+            )
+        }
     })
 })
 
@@ -71,14 +74,17 @@ router.post('/class', (req,res) => {
     const path = require('path');
     const projectRoot = path.resolve();
     cloudinary.uploader.upload(`./uploads/${photo.name}`, (err, result) => {
-        console.log(err);
-        req.body.photo = result.secure_url;
-        Student.create(req.body, (err, createdStudent) => {
-            fs.unlink(`${projectRoot}/uploads/${photo.name}`, (err) => {
-                console.log(err);
-                res.redirect('/class');
+        if (err) {
+            res.redirect(`/student/new`);
+        } else {
+            req.body.photo = result.secure_url;
+            Student.create(req.body, (err, createdStudent) => {
+                fs.unlink(`${projectRoot}/uploads/${photo.name}`, (err) => {
+                    console.log(err);
+                    res.redirect('/class');
+                })
             })
-        })
+        }
     })
 })
 
