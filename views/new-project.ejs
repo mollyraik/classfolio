@@ -3,25 +3,37 @@
 <%- include('./partials/head') %>
 <body>
     <%- include('./partials/nav') %>
-    <h1>Add a new Project</h1>
-    <form action="/student/<%= student._id %>" method="POST" enctype="multipart/form-data">
-        <label>
-            Project Name: <input type="text" name="name" required>
-        </label>
-        <label>
-            Description: <input type="text" name="description" required>
-        </label>
-        <label>
-            Photo: <input type="file" name="photo" required>
-        </label>
-        <label>
-            Date Made: <input type="date" name="dateMade" value="<%= new Date().toISOString().slice(0, 10) %>">
-        </label>
-        <label> Created By: 
-            <input type="text" name="createdBy" value="<%= student.firstName + " " + student.lastName%>" readonly>
-        </label>
-        <input type="submit" name="" value="Add Project">
-    </form>
+    <div class="container">
+        <h1>Add a new Project</h1>
+        <form action="/student/<%= student._id %>" method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label">
+                    Project Name: <input type="text" name="name" class="form-control" required>
+                </label>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">
+                    Description: <input type="text" name="description" class="form-control" required>
+                </label>
+            </div>
+            <div class="mb-3">
+                <label>
+                    Photo: <input type="file" name="photo" class="form-control" required>
+                </label>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">
+                    Date Made: <input class="form-control" type="date" name="dateMade" value="<%= new Date().toISOString().slice(0, 10) %>">
+                </label>
+            </div>
+            <div class="mb-3">
+                <label class="form-label"> Created By: 
+                    <input type="text" name="createdBy" value="<%= student.firstName + " " + student.lastName%>" class="form-control" readonly>
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Project</button>
+        </form>
+    </div>
 
     <%- include('./partials/bootstrapjs.ejs') %>
 </body>
