@@ -2,12 +2,23 @@
 <html lang="en">
 <%- include('./partials/head') %>
 <body>
+    <div class="loading-icon">Loading...</div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        // hide the loading icon
+        document.querySelector(".loading-icon").style.display = "none";
+      });
+    </script>
+
     <%- include('./partials/nav') %>
     <div class="container">
-        <div class="card mb-3" style="max-width: 700px;">
+        <div class="card mb-3" style="max-width: 800px;">
             <div class="row">
                 <div class="col-xs-12 col-md-6">
-                    <img src="<%= student.photo %>" alt="<%= title %>" class="card-img" id="student-show-photo">
+                    <div style="padding-bottom: 0%;">
+                        <img src="<%= student.photo %>" alt="<%= title %>" class="card-img" id="student-show-photo" style="object-fit: cover; width: 100%; height: 100%;" class="d-sm-none d-md-block">
+                    </div>
                 </div>
                 <div class="col-xs-12 col-md-6" id="student-show-name-btns">
                     <div class="card-body">
@@ -33,12 +44,12 @@
         <h1 class="card-title"><%= student.firstName %>'s Projects <span class="badge bg-primary">
                         <a href="/projects/new?studentId=<%= student._id %>" class="btn btn-primary">Add a New Project</a>
                 </span></h1>
-        <div class="row" data-masonry='{"percentPosition": true }'>
+        <div class="row g-3">
             <% projects.forEach((project) => {%>
                 <div class="col-xs-12 col-md-6 col-lg-3">
                     <div class="card">
                         <a href="/projects/<%= project._id %>" class="card-body">
-                            <img src="<%= project.photo %>" alt="<%= project.description %>" class="img-responsive w-100 shadow-1-strong rounded mb-4">
+                            <img src="<%= project.photo %>" alt="<%= project.description %>" class="img-fluid w-100 shadow-1-strong rounded mb-4" style="object-fit: cover; width: 100%; height: 100%;" class="d-md-block">
                             <h5 class="card-title text-center"><%= project.name %></h5>
                         </a>
                     </div>
