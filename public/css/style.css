@@ -10,6 +10,16 @@ img {
 nav {
     margin-bottom: 20px;
 }
+
+.loading-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 2em;
+    color: #ccc;
+  }
+  
 /* #student-show-photo {
     border-style: solid;
     border-color: #03c2fc;
